@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tracking Page</title>
+    <script>
+      async function logVisit() {
+        const id = new URLSearchParams(window.location.search).get("id") || "unknown";
+        const payload = {
+          id: id,
+          userAgent: navigator.userAgent,
+          screen: `${screen.width}x${screen.height}`,
+          referrer: document.referrer
+        };
+
+        await fetch("YOUR_WEB_APP_URL", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+      }
+
+      window.onload = logVisit;
+    </script>
+  </head>
+  <body>
+    <h1>Thanks for visiting!</h1>
+  </body>
+</html>
