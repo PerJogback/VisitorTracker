@@ -7,14 +7,19 @@
         const id = new URLSearchParams(window.location.search).get("id") || "unknown";
         const payload = {
           id: id,
+          ip: 'N/A',
           userAgent: navigator.userAgent,
           screen: `${screen.width}x${screen.height}`,
+          time: new Date().toISOString(),
           referrer: document.referrer
         };
 
-        await fetch("https://script.google.com/macros/s/AKfycbwwLn-v0GA2y-E44P_s-4HRgv4AQag4FhYiVw1XK2Q5Ik2-i8Ey4CzC5jwgTYcBrr6s/exec", {
+        await fetch("https://api.sheetson.com/v2/sheets/Visitor%20Log", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: { 
+            "Content-Type": "application/json",
+            "Authorization": "Bearer 68ziRvI0dA-01zXYUDZKU21UjFDSx_LjtHfgT4yUw7Ln8bt6yGqSsjI4LD-Asw"
+          },
           body: JSON.stringify(payload)
         });
       }
